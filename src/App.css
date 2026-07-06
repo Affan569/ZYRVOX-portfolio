@@ -1,0 +1,371 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   ✨ ZYRVOX DIGITAL — PREMIUM DESIGN SYSTEM
+   Gold × Electric Blue · Cinematic, minimal, high-trust agency aesthetic
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Core Brand Tokens */
+  --z-dark: #05070d;
+  --z-dark-2: #0a0e1a;
+  --z-card: #0d1220;
+  --z-gold: #d4af37;
+  --z-gold-bright: #f4d35e;
+  --z-electric: #3b82f6;
+  --z-electric-bright: #60a5fa;
+  --z-text: #f4f6fb;
+  --z-text-2: #9aa4b8;
+  --z-border: rgba(59, 130, 246, 0.15);
+
+  /* Derived gradients */
+  --grad-signature: linear-gradient(135deg, var(--z-gold) 0%, var(--z-electric) 100%);
+  --grad-glow: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+
+  /* Motion */
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-snap: cubic-bezier(0.68, -0.4, 0.27, 1.4);
+}
+
+/* ==========================================================================
+   BASE RESET
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--z-dark);
+  background-image:
+    radial-gradient(circle at 15% 10%, rgba(212, 175, 55, 0.05) 0%, transparent 35%),
+    radial-gradient(circle at 85% 90%, rgba(59, 130, 246, 0.06) 0%, transparent 40%);
+  background-attachment: fixed;
+  color: var(--z-text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+code {
+  font-family: 'Space Grotesk', source-code-pro, Menlo, Monaco, Consolas, monospace;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Clash Display', 'Space Grotesk', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Fluid, cinematic hero-scale typography */
+.text-hero {
+  font-size: clamp(2.75rem, 6vw, 6rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+}
+
+/* ==========================================================================
+   SELECTION & SCROLLBAR — small details that read as "premium"
+   ========================================================================== */
+
+::selection {
+  background: rgba(212, 175, 55, 0.35);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--z-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--z-gold), var(--z-electric));
+  border-radius: 999px;
+  border: 2px solid var(--z-dark);
+}
+::-webkit-scrollbar-thumb:hover {
+  filter: brightness(1.15);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--z-gold) var(--z-dark);
+}
+
+/* Focus states — accessible AND styled */
+:focus-visible {
+  outline: 2px solid var(--z-electric);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ==========================================================================
+   GRADIENT TEXT
+   ========================================================================== */
+
+.text-signature {
+  background: var(--grad-signature);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-signature-animated {
+  background: linear-gradient(90deg, var(--z-gold), var(--z-electric), var(--z-gold));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmerText 6s linear infinite;
+}
+
+@keyframes shimmerText {
+  to { background-position: 200% center; }
+}
+
+/* ==========================================================================
+   GLASS PANELS
+   ========================================================================== */
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid var(--z-border);
+  border-radius: 20px;
+  box-shadow: 0 0 40px rgba(59, 130, 246, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: transform 0.5s var(--ease-premium), border-color 0.4s ease, box-shadow 0.4s ease;
+  will-change: transform;
+}
+
+.glass-panel-hover:hover {
+  transform: translateY(-8px);
+  border-color: rgba(212, 175, 55, 0.4);
+  box-shadow: 0 20px 60px rgba(212, 175, 55, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================================================
+   SIGNATURE GLOW BUTTON
+   ========================================================================== */
+
+.btn-signature {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  color: var(--z-dark);
+  background: var(--grad-signature);
+  background-size: 180% auto;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.4s var(--ease-snap), background-position 0.6s ease, box-shadow 0.4s ease;
+}
+
+.btn-signature:hover {
+  background-position: right center;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 40px rgba(212, 175, 55, 0.25);
+}
+
+.btn-signature:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Sheen sweep on hover */
+.btn-signature::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.7s ease;
+}
+.btn-signature:hover::after {
+  left: 130%;
+}
+
+/* Ghost / outline variant */
+.btn-ghost {
+  padding: 13px 30px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  color: var(--z-electric-bright);
+  background: transparent;
+  border: 1.5px solid rgba(59, 130, 246, 0.4);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.35s var(--ease-premium);
+}
+.btn-ghost:hover {
+  border-color: var(--z-electric);
+  background: rgba(59, 130, 246, 0.08);
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.15);
+}
+
+/* ==========================================================================
+   MAGNETIC HOVER LINKS (underline draw effect)
+   ========================================================================== */
+
+.link-draw {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+.link-draw::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 1.5px;
+  background: var(--grad-signature);
+  transition: width 0.35s var(--ease-premium);
+}
+.link-draw:hover::after {
+  width: 100%;
+}
+
+/* ==========================================================================
+   NOISE TEXTURE OVERLAY — adds analog depth to flat dark backgrounds
+   ========================================================================== */
+
+.noise-overlay {
+  position: relative;
+}
+.noise-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+/* ==========================================================================
+   SHIMMER / SKELETON LOADING
+   ========================================================================== */
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+  background: var(--z-card);
+}
+.shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+  animation: shimmerSweep 1.8s infinite;
+}
+@keyframes shimmerSweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ==========================================================================
+   SCROLL-REVEAL PRIMITIVES
+   Pair with a small IntersectionObserver hook: adds .is-visible on entry
+   ========================================================================== */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s var(--ease-premium), transform 0.8s var(--ease-premium);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   AMBIENT FLOAT — subtle life on static elements (icons, badges, blobs)
+   ========================================================================== */
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+.motion-float {
+  animation: floatY 5s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.15); }
+  50% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.35); }
+}
+.motion-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   MARQUEE — for client logos / rotating tags
+   ========================================================================== */
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 28s linear infinite;
+}
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ==========================================================================
+   SECTION LABEL (small eyebrow badges used across sections)
+   ========================================================================== */
+
+.section-label {
+  font-family: 'Space Grotesk', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   DIVIDERS
+   ========================================================================== */
+
+.divider-signature {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.35), rgba(59, 130, 246, 0.35), transparent);
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .glass-panel,
+  .btn-signature,
+  .btn-ghost,
+  .motion-float,
+  .motion-pulse-glow,
+  .reveal,
+  .marquee-track,
+  .text-signature-animated {
+    animation: none !important;
+    transition: opacity 0.25s ease !important;
+    transform: none !important;
+  }
+}
